@@ -1,25 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from 'react';
+import { Redirect, Route, BrowserRouter } from "react-router-dom";
 
-function App() {
+import { GlobalProvider } from './context/GlobalState';
+import ThemeProviderApp from './themeProvider';
+
+import { appRoutes } from './routes';
+
+const STORAGE = {
+  getToken: () => { }
+};
+
+const renderLoader = () => <h1>Loading...</h1>;
+
+const RedirectComponent = () => <Redirect to='/login' />;
+
+const mapRoutes = ({ route, isPrivate, Component }) => {
+  const isLogin = STORAGE.getToken() || false;
+  console.log('login status: ', isLogin);
+
+  return (<Route
+    exact path={route}
+    render={props => (
+      isPrivate && STORAGE.getToken()
+        ? <Component {...props} />
+        : (isPrivate ? <RedirectComponent /> : <Component />)
+    )}
+  />);
+}
+
+const createRoutes = (appRoutes) => appRoutes.map(mapRoutes);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalProvider>
+      <BrowserRouter>
+        <ThemeProviderApp>
+          <Suspense fallback={renderLoader()}>
+            {
+              createRoutes(appRoutes)
+            }
+          </Suspense>
+        </ThemeProviderApp>
+      </BrowserRouter>
+    </GlobalProvider>
   );
 }
 
