@@ -5,7 +5,7 @@ import { Header } from '../../components';
 const useStyles = makeStyles((theme) => ({
     children: {
         margin: '5rem 10%',
-        marginBottom: '0',
+        marginBottom: '5rem',
         minHeight: 'calc(100vh - 5rem)',
         // borderLeft: '1px solid white',
         [theme.breakpoints.down('sm')]: {

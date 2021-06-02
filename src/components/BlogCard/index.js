@@ -15,13 +15,17 @@ import { blogCard } from '../../constants/appConstants';
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
+        // maxWidth: 345,
+        height: '100%',
+        '&:hover': {
+            boxShadow: '0 10px 20px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)'
+        }
     },
     media: {
         height: 250,
     },
     btn: {
-        textDecoration: 'none'
+        textDecoration: 'none',
     }
 });
 
@@ -29,13 +33,13 @@ const BlogCard = ({ _id, title, sub_title = '', thumbnailURL }) => {
     const classes = useStyles();
 
     return (
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
             <Card className={classes.root}>
                 <CardActionArea>
                     <CardMedia
                         className={classes.media}
                         image={thumbnailURL}
-                        title="Contemplative Reptile"
+                        title={title}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
@@ -54,6 +58,7 @@ const BlogCard = ({ _id, title, sub_title = '', thumbnailURL }) => {
                     <Link to={`/blog/${_id}`}>
                         <Button
                             size="small"
+                            variant="contained"
                             color="primary"
                             className={classes.btn}
                         >
