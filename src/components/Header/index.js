@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -26,6 +27,15 @@ const useStyles = makeStyles((theme) => ({
             textAlign: 'center',
         },
     },
+    toolBar: {
+        padding: '0 10rem',
+        [theme.breakpoints.down('sm')]: {
+            padding: '0',
+        },
+    },
+    btn: {
+        color: 'white'
+    }
 }));
 
 const Header = ({ admin = false }) => {
@@ -37,7 +47,7 @@ const Header = ({ admin = false }) => {
     return (
         <div className={classes.root}>
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar className={classes.toolBar}>
                     {
                         isAdmin
                             ? (
@@ -50,13 +60,9 @@ const Header = ({ admin = false }) => {
                     <Typography variant="h6" className={classes.title}>
                         {header.TITLE}
                     </Typography>
-                    {
-                        isAdmin
-                            ? (
-                                <Button color="inherit">{header.LOGIN_BTN_TEXT}</Button>
-                            )
-                            : null
-                    }
+                    <Link to='/'>
+                        <Button color="inherit" className={classes.btn} >{header.HOME_BTN_TEXT}</Button>
+                    </Link>
                 </Toolbar>
             </AppBar>
         </div>

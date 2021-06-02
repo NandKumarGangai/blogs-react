@@ -47,6 +47,11 @@ const HomePage = () => {
                             <BlogCard key={post._id} { ...post} />
                         )
                     }
+                    {
+                        blog_posts.map( post =>
+                            <BlogCard key={post._id} { ...post} />
+                        )
+                    }
                     
                     {/* <BlogCard></BlogCard>
                     <BlogCard></BlogCard>

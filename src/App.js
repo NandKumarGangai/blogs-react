@@ -6,11 +6,11 @@ import ThemeProviderApp from './themeProvider';
 
 import { appRoutes } from './routes';
 
+import { Loader } from './components';
+
 const STORAGE = {
   getToken: () => { }
 };
-
-const renderLoader = () => <h1>Loading...</h1>;
 
 const RedirectComponent = () => <Redirect to='/login' />;
 
@@ -35,7 +35,7 @@ const App = () => {
     <GlobalProvider>
       <BrowserRouter>
         <ThemeProviderApp>
-          <Suspense fallback={renderLoader()}>
+          <Suspense fallback={<Loader />}>
             {
               createRoutes(appRoutes)
             }

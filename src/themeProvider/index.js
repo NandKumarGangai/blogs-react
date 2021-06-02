@@ -18,7 +18,7 @@ const ThemeProviderApp = ({ children }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline/>
+      <CssBaseline />
       {children}
     </ThemeProvider>
   );
