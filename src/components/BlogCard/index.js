@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
 import { blogCard } from '../../constants/appConstants';
+import { PROXY } from '../../Utils';
 
 const useStyles = makeStyles({
     root: {
@@ -38,7 +39,7 @@ const BlogCard = ({ _id, title, sub_title = '', thumbnailURL }) => {
                 <CardActionArea>
                     <CardMedia
                         className={classes.media}
-                        image={thumbnailURL}
+                        image={`${PROXY}${thumbnailURL}`}
                         title={title}
                     />
                     <CardContent>

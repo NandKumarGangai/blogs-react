@@ -1,19 +1,7 @@
 {
     "services": {
-        "create_new_blog": {
-            "path": "/api/v1/create-new"
-        },
         "get_all_blog_posts": {
             "path": "/api/v1/get/posts/"
-        },
-        "upload_blog_thumbnail": {
-            "path": "/api/v1/upload_blog_thumbnail"
-        },
-        "getUserProfile": {
-            "path": "/api/v1/get-user-profile"
-        },
-        "getCandidateProfiles": {
-            "path": "/api/v1/get-candidate-profiles"
         }
     }
 }

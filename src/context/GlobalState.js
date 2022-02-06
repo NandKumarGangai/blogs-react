@@ -1,9 +1,6 @@
 import React, { createContext, useReducer } from 'react';
-import Axios from 'axios';
 import AppReducer from './AppReducer';
 import { APIS } from '../serviceCalls';
-
-const HOST = 'https://expense-tracker-server-96.herokuapp.com';
 
 const initialState = {
     blog_posts: [],
@@ -22,50 +19,13 @@ export const GlobalProvider = ({ children }) => {
 
             dispatch({
                 type: 'GET_BLOG_POSTS',
-                data: res.posts
+                data: res.posts || []
             });
         } catch (error) {
             console.log(error);
             dispatch({
                 type: 'TRANSACTION_ERROR',
-                data: error.response.data.error || { error: 'error occured...'}
-            });
-        }
-    }
-
-    // const deleteTransaction = async (id) => {
-    //     try {
-    //         await Axios.delete(`${HOST}/api/v1/transactions/${id}`);
-
-    //         dispatch({
-    //             type: 'DELETE_TRANSACTION',
-    //             data: id
-    //         });        
-    //     } catch (error) {
-    //         dispatch({
-    //             type: 'TRANSACTION_ERROR',
-    //             data: error.response.data.error
-    //         });
-    //     }
-    // }
-
-    const addTransaction = async (transaction) => {
-        try {
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            };
-            const res = await Axios.post(`${HOST}/api/v1/transactions`, transaction, config);
-
-            dispatch({
-                type: 'ADD_TRANSACTION',
-                data: res.data.data
-            });
-        } catch (error) {
-            dispatch({
-                type: 'TRANSACTION_ERROR',
-                data: error.response.data.error
+                data: error || { error: 'error occured...'}
             });
         }
     }
@@ -76,8 +36,6 @@ export const GlobalProvider = ({ children }) => {
             error: state.error,
             loading: state.loading,
             getBlogPosts,
-            // deleteTransaction,
-            addTransaction
         }}>
             { children }
         </GlobalContext.Provider>

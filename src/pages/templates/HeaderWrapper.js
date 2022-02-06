@@ -9,11 +9,11 @@ const useStyles = makeStyles((theme) => ({
     children: {
         margin: '5rem 10%',
         marginBottom: '2rem',
-        minHeight: 'calc(100vh - 5rem)',
+        minHeight: '70vh',
         // borderLeft: '1px solid white',
         [theme.breakpoints.down('sm')]: {
             margin: '4rem 5%',
-            minHeight: 'calc(100vh - 4rem)',
+            minHeight: '60vh',
         },
         position: 'relative'
     },

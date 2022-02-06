@@ -1,6 +1,7 @@
 import _get from 'lodash/get';
 import { makeServiceCall, serviceCallPaths, convertToJson } from '../serviceCallHelpers';
 import { navigateToErrorPage } from '../navigations';
+import { PROXY } from '../../Utils';
 
 const handleResponse = () =>
     (res) => {
@@ -16,7 +17,7 @@ const handleError = history => err => {
 
 export const getAllBlogPosts = (history) => {
     const request = {
-        path: serviceCallPaths.GET_ALL_BLOG_POSTS,
+        path: `${PROXY}${serviceCallPaths.GET_ALL_BLOG_POSTS}`,
         method: 'get',
     };
 

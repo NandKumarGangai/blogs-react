@@ -20,9 +20,7 @@ const defaultHeaders = {
 const defaultMethod = 'post';
 
 export const serviceCallPaths = {
-    CREATE_NEW_BLOG: _get(config, 'services.create_new_blog.path', ''),
     GET_ALL_BLOG_POSTS: _get(config, 'services.get_all_blog_posts.path', ''),
-    UPLOAD_BLOG_THUMBNAIL: _get(config, 'services.upload_blog_thumbnail', ''),
 };
 
 export const convertToJson = response => {
@@ -35,7 +33,6 @@ export const convertToJson = response => {
         });
     }
 };
-console.info('Default Headers: ', defaultHeaders);
 
 export const makeServiceCall = ({
     host = '',
@@ -48,7 +45,7 @@ export const makeServiceCall = ({
         ...headers,
         ...addAuthHeader()
     }
-    console.log('headers: ', modHeaders);
+
     return axios({
         method,
         url: `${host}${path}`,

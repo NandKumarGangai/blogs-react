@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: '0',
         color: 'white',
         [theme.breakpoints.down('sm')]: {
-            padding: '1rem',
+            padding: '0.8rem',
         },
     },
     bottomNav: {
